@@ -25,7 +25,19 @@ def init_board():
             item = item_list.pop(random.randrange(len(item_list)))
             board[i][j] = item
     return board
+    
 board = init_board()
 
 showBoard(board)       
     
+def main():
+    while True:
+        clone_board = board[:]
+        userGuess = raw_input("Enter 1st guess and 2nd guess:")
+        clone_board[int(userGuess[0])][int(userGuess[1])] = \
+        (clone_board[int(userGuess[0])][int(userGuess[1])][0], True)
+        clone_board[int(userGuess[2])][int(userGuess[3])] = \
+        (clone_board[int(userGuess[2])][int(userGuess[3])][0], True)
+        
+        showBoard(clone_board)
+main()
