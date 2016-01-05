@@ -48,6 +48,14 @@ def main():
 
         clone_board = deepcopy(board)
         userGuess = raw_input("Enter 1st guess and 2nd guess:")  
+        for guess in userGuess:
+            invalid = False  
+            if guess not in ["0","1","2","3"]:                
+                invalid = True
+        if invalid:
+            print "Invalid Input. Please try again"
+            continue
+                
         clone_board[int(userGuess[0])][int(userGuess[1])] = \
         (clone_board[int(userGuess[0])][int(userGuess[1])][0], True)
         clone_board[int(userGuess[2])][int(userGuess[3])] = \
