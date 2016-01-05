@@ -1,4 +1,5 @@
 import random
+from copy import deepcopy
 
 def showBoard(board):
     print "-"*17
@@ -32,12 +33,17 @@ showBoard(board)
     
 def main():
     while True:
-        clone_board = board[:]
-        userGuess = raw_input("Enter 1st guess and 2nd guess:")
+
+        clone_board = deepcopy(board)
+        userGuess = raw_input("Enter 1st guess and 2nd guess:")  
         clone_board[int(userGuess[0])][int(userGuess[1])] = \
         (clone_board[int(userGuess[0])][int(userGuess[1])][0], True)
         clone_board[int(userGuess[2])][int(userGuess[3])] = \
         (clone_board[int(userGuess[2])][int(userGuess[3])][0], True)
+        
+        if clone_board[int(userGuess[0])][int(userGuess[1])][0] == clone_board[int(userGuess[2])][int(userGuess[3])][0]:
+            board[int(userGuess[0])][int(userGuess[1])] = clone_board[int(userGuess[0])][int(userGuess[1])]
+            board[int(userGuess[2])][int(userGuess[3])] = clone_board[int(userGuess[2])][int(userGuess[3])]
         
         showBoard(clone_board)
 main()
