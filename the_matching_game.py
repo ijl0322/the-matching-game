@@ -11,6 +11,15 @@ def showBoard(board):
             else:
                 board_line += " " + " " + " " + "|"
         print "%s\n" %board_line, "-"*17
+        
+def checkWin(board):
+    score = 0
+    for line in board:
+        for item in line:
+            if item[1] == True:
+                score += 1
+    return score == 16
+                
             
 def init_board():
     board = []
@@ -32,7 +41,10 @@ board = init_board()
 showBoard(board)       
     
 def main():
-    while True:
+    numTry = 0
+    while not checkWin(board):
+        numTry += 1
+        print "\nNum of Trials: ", numTry
 
         clone_board = deepcopy(board)
         userGuess = raw_input("Enter 1st guess and 2nd guess:")  
@@ -45,5 +57,9 @@ def main():
             board[int(userGuess[0])][int(userGuess[1])] = clone_board[int(userGuess[0])][int(userGuess[1])]
             board[int(userGuess[2])][int(userGuess[3])] = clone_board[int(userGuess[2])][int(userGuess[3])]
         
+        
         showBoard(clone_board)
+        
+    print "Congratulations! You win!"
+    
 main()
